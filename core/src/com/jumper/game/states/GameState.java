@@ -9,6 +9,8 @@ public class GameState {
     private Stack<State> states;
 
     public GameState() {
-
+        states = new Stack<State>();
     }
+
+
 }
