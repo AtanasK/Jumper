@@ -3,7 +3,7 @@ package com.jumper.game.states;
 import java.util.Stack;
 
 /**
- * Created by AtanasK on 30-Jan-16.
+ *
  */
 public class GameState {
     private Stack<State> states;
@@ -12,5 +12,16 @@ public class GameState {
         states = new Stack<State>();
     }
 
+    public State pop() {
+        return states.pop();
+    }
+
+    public void add(State state) {
+        states.add(state);
+    }
+
+    public State peek() {
+        return states.peek();
+    }
 
 }
