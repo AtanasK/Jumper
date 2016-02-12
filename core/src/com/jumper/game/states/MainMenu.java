@@ -1,6 +1,8 @@
 package com.jumper.game.states;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jumper.game.JumperGame;
@@ -14,6 +16,8 @@ public class MainMenu extends State {
     private Texture jumperText;
     private Texture playButton;
     private Texture frogyStart;
+    private Sound intro;
+    private Music music;
 
     public MainMenu(GameState gameState) {
         super(gameState);
@@ -23,6 +27,14 @@ public class MainMenu extends State {
         jumperText = new Texture(Gdx.files.internal("jumperStart.png"));
         playButton = new Texture(Gdx.files.internal("playButton.png"));
         frogyStart = new Texture(Gdx.files.internal("frogyStart.png"));
+
+        intro = Gdx.audio.newSound(Gdx.files.internal("intro.mp3"));
+        intro.play();
+
+        music = Gdx.audio.newMusic(Gdx.files.internal("mainSound.mp3"));
+        music.setVolume(0.4f);
+        music.setLooping(true);
+        music.play();
     }
 
     @Override
@@ -55,6 +67,11 @@ public class MainMenu extends State {
 
     @Override
     public void dispose() {
-
+        background.dispose();
+        jumperText.dispose();
+        frogyStart.dispose();
+        playButton.dispose();
+        intro.dispose();
+        music.dispose();
     }
 }

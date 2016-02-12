@@ -20,7 +20,7 @@ public class PlayState extends State {
     private Frogy frogy;
     private Obstacles obstacles;
 
-
+    public int counter;
     public boolean gameEnd;
 
     public PlayState(GameState gameState) {
@@ -28,10 +28,11 @@ public class PlayState extends State {
         camera.setToOrtho(false, JumperGame.WIDTH / 2, JumperGame.HEIGHT / 2);
 
         gameEnd = false;
+        counter = 0;
 
         background = new Background(camera.position.y);
         frogy = new Frogy(camera.viewportWidth, 50);
-        obstacles = new Obstacles(camera.viewportWidth, camera.viewportHeight);
+        obstacles = new Obstacles(this);
 
         playMusic = Gdx.audio.newMusic(Gdx.files.internal("mainSound.mp3"));
         playMusic.setLooping(true);
@@ -66,9 +67,8 @@ public class PlayState extends State {
         spriteBatch.begin();
         background.render(spriteBatch);
         frogy.render(spriteBatch, frogy.getPosition().x, frogy.getPosition().y);
-        if (obstacles.draw(spriteBatch, frogy.getPosition().y, camera.viewportHeight, frogy.getHitbox())) {
-            gameEnd = true;
-        }
+
+        // TODO obstacles draw
 
         spriteBatch.end();
     }

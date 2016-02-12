@@ -1,6 +1,7 @@
 package com.jumper.game.states;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jumper.game.JumperGame;
@@ -11,11 +12,9 @@ import com.jumper.game.JumperGame;
  */
 public class SplashScreen extends State {
     private Texture background;
-    private Texture jumperText;
-    private Texture playButton;
-    private Texture frogyStart;
+    private Sound intro;
 
-    private static float MAXTIME = 5f;
+    private static float MAXTIME = 6f;
     private float currentTime;
 
     public SplashScreen(GameState gameState) {
@@ -24,6 +23,8 @@ public class SplashScreen extends State {
 
         background = new Texture(Gdx.files.internal("splashScreen.png"));
         currentTime = 0;
+        intro = Gdx.audio.newSound(Gdx.files.internal("intro.mp3"));
+        intro.play();
     }
 
     @Override
@@ -51,5 +52,6 @@ public class SplashScreen extends State {
     @Override
     public void dispose() {
         background.dispose();
+        intro.dispose();
     }
 }
